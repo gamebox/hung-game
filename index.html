@@ -1,0 +1,101 @@
+<html ng-app="hangman">
+	<head>
+	    <link rel="stylesheet" href="css/vendor/foundation/foundation.min.css" />
+	    <script src="js/vendor/jquery-1.10.0.min.js" type="text/javascript"></script>
+	    <!-- Angular is version 1.1.5 -->
+	    <script src="js/vendor/angular.min.js"></script>
+        <script src="js/app.js"></script>
+        <link rel="stylesheet" href="css/app.css" />
+	</head>
+	<body ng-controller="HangmanCtrl">
+		<nav class="top-bar fixed">
+			<div class="row">
+				<ul class="title-area">
+				  <!-- Title Area -->
+				  <li class="name">
+				    <h1><a href="#">hung.</a></h1>
+				  </li>
+				</ul>
+				<section class="top-bar-section" ng-if="playerName">
+					<div class="large-offset-2 large-2 columns score-panel">Level: <span class="number">{{wordLevel}}</span></div>
+					<div class="large-2 columns score-panel">Score: <span class="number">{{score}}</span></div>
+					<div class="large-2 columns score-panel">Completed: <span class="number">{{completed}}</span></div>
+				  <ul class="right">
+				    <li><a>{{playerName}}</a></li>
+				    <li class="divider hide-for-small"></li>
+				    <li><a ng-click="signOut()">Sign Out</a></li>
+				  </ul>
+				</section>
+			</div>
+		</nav>
+
+		<div ng-hide="playerName">
+			<div class="row">
+				<h1>Play Hangman - with a twist!</h1>
+					<fieldset>
+						<legend>Enter Player Name</legend>
+						<div class="row">
+						    <div class="large-6 columns">
+						    	<div class="row collapse">
+						        	<div class="small-10 columns">
+						        		<input type="text" placeholder="Player Name" ng-model="enteredName" />
+						        	</div>
+							        <div class="small-2 columns">
+							        	<a class="button prefix" ng-click="assignName()">Play!</a>
+							        </div>
+							    </div>
+						    </div>
+						</div>
+					</fieldset>
+			</div>
+		</div>
+
+		<div ng-if="playerName">
+			<div ng-hide="tryAgainToggle">
+				<div class="row">
+					<div class="large-5 columns picture">
+						<img ng-src="img/step-{{gameState}}.png" ng-if="gameState > 0"/>
+					</div>
+					<div class="large-6 offset-1 columns">
+						<div class="row">
+							<div class="large-12 columns guess-container">
+								<div class="guess-letter" ng-repeat="char in guess">{{char.value | BlankFilter | uppercase}}</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="large-12 columns letter-container">
+								<div class="letters" ng-repeat="char in letters" ng-click="chooseLetter($index)">{{char | uppercase}}</div>
+							</div>
+						</div>
+						<div class="row" ng-show="nextWordToggle">
+							<div class="large-6 columns panel">
+								<button class="button secondary" ng-click="changeWordLevel()">Ready for Next Level ({{wordLevel + 1}})</button>
+								<button class="button" ng-click="nextWord()">Next Word at this level--></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div ng-show="tryAgainToggle">
+				<div class="row">
+					<div class="large-12 columns">
+						<h1>Game Over</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns panel">
+						<h2>The word was <em>{{oldAnswer}}</em></h2>
+						<button class="button" ng-click="tryAgain()">Try Again</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="top-bar fixed-bottom">
+			<div class="row">
+				<div class="large-12 columns">
+					<div class="alert-box" ng-class="{ alert: failure, success: success }" ng-show="error">{{message}}</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

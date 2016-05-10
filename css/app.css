@@ -1,0 +1,101 @@
+.top-bar {
+	background-color: #FFFFFF;
+	color: #333333;
+}
+
+.fixed  {
+	top: 5px;
+}
+
+.fixed-bottom {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 1299;
+	width: 100%;
+}
+
+.top-bar .name h1 a{
+	font-size: 36px;
+	color: #333333;
+}
+
+.top-bar-section ul {
+	background-color: #FFFFFF;
+}
+
+.top-bar-section ul li > a {
+	background-color: #FFFFFF;
+	color: #333333;
+}
+
+.top-bar-section li a:not(.button) {
+	background-color: #FFFFFF;
+}
+
+.score-panel {
+	font-size: 1.3em;
+}
+
+.score-panel .number {
+	color: #1983e6;
+	font-size: 32px;
+	font-style: italic;
+}
+
+.guess-letter {
+	border-bottom: 2px solid #949494;
+	margin-left: 7px;
+	margin-right: 7px;
+	text-align: center;
+	min-width: 48px;
+	float: left;
+	height: 52px;
+	padding-bottom: 4px;
+	line-height: 48px;
+	font-size: 48px;
+	color: #1983e6;
+	font-style: italic;
+}
+
+.letters {
+	font-size: 24px;
+	color: #949494;
+	float: left;
+	margin-right: 7px;
+	margin-left: 7px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	width: 30px;
+	height: 30px;
+}
+
+.letters:hover {
+	cursor: pointer;
+}
+
+.picture {
+	height: 330px;
+	width: 324px;
+	border-right: 1px solid #949494;
+	padding-right: 20px;
+}
+
+.picture img {
+	vertical-align: bottom;
+}
+
+.picture img::after { 
+	content: ".";
+	visibility: hidden;
+}
+
+.guess-container {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.letter-container {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
